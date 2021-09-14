@@ -1,0 +1,200 @@
+<style>
+    * {
+        box-sizing: border-box;
+        margin: auto;
+        padding: 5px;
+        width: 90%;
+    }
+
+    .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-top: 3px solid black;
+        border-bottom: 3px solid black;
+    }
+
+    .container h1 {
+            text-align: center;
+    }
+
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        vertical-align: middle;
+    }
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+    #customers tr:hover {background-color: #ddd;}
+
+    #customers th{
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #000;
+        color: white;
+        width: fit-content;
+    }
+
+    #customers td {
+        width: fit-content;
+    }
+
+    #customers th#transacao, th#uf {
+        text-align: center;
+    }
+
+    .botao, .botao1 {
+            margin-right: 0;
+        }
+
+    .botao .button {
+        display: inline-block;
+        border-radius: 50px;
+        background-color: #000;
+        border: none;
+        color: #FFF;
+        text-align: center;
+        font-size: 25px;
+        font: bold;
+        padding: 5px;
+        transition: all 0.5s;
+        cursor: pointer;
+        width: 30%;
+        height: auto;
+        float: right;
+    }
+
+    .botao1 .button {
+        display: inline-block;
+        border-radius: 50px;
+        background-color: #000;
+        border: none;
+        color: #FFF;
+        text-align: center;
+        font-size: 12px;
+        font: bold;
+        padding: 5px;
+        transition: all 0.5s;
+        cursor: pointer;
+        width: 100%;
+        height: auto;
+        float: none;
+    }
+
+    .botao .button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+    .botao1 .button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+    .botao .button span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 4px;
+        right: -20px;
+        transition: 0.5s;
+    }
+
+    .botao1 .button span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 4px;
+        right: -20px;
+        transition: 0.5s;
+    }
+
+
+    .botao .button:hover span {
+        padding-right: 20px;
+    }
+
+    .botao1 .button:hover span {
+        padding-right: 6px;
+    }
+
+    .botao .button:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+
+    .botao1 .button:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+</style>
+
+<div class="container" style="overflow-x:auto;">
+
+    <table id="customers">
+        
+        <h1>EXCLUIR ENDEREÇO CADASTRO</h1><br>
+
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NOME</th>
+                <th scope="col">E-MAIL</th>
+                <th scope="col">DDD</th>
+                <th scope="col">TELEFONE</th>
+                <th scope="col">CEP</th>
+                <th scope="col">CIDADE</th>
+                <th scope="col" id="uf">UF</th>
+                <th scope="col" id="transacao">TRANSAÇÃO</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each endereco}}
+
+            <tr>
+                <th>{{idEndereco}}</th>
+                <td>{{nome}}</td>
+                <td>{{email}}</td>
+                <td>{{ddd}}</td>
+                <td>{{telefone}}</td>
+                <td>{{cep}}</td>
+                <td>{{localidade}}</td>
+                <td style="text-align: center;">{{uf}}</td>
+                <td style="display: inline-flex; border-left: none; width: 100%;">
+                    {{!-- <a href="/editarEndereco/{{idEndereco}}">
+                        <div class="botao1" style="margin-right: 10px;">
+                            <button type="submit" class="button" style="vertical-align:middle"><span>EDITAR</span></button>
+                        </div>
+                    </a> --}}
+                    <a href="/removerEndereco/{{idEndereco}}">
+                        <div class="botao1">
+                            <button type="submit" class="button" style="vertical-align:middle"><span>EXCLUIR</span></button>
+                        </div>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+
+    </table>
+    <br>
+    {{!-- <div class="botao">
+        <a href="/cadastrarEndereco">
+            <button type="submit" class="button" style="vertical-align:middle"><span>NOVO ENDEREÇO</span></button>
+        </a>
+    </div> --}}
+
+</div>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCC - IFSC</title>
+    <link rel="shortcut icon" href="https://moodle.ifsc.edu.br/theme/image.php/ifsc2019/theme/1618587925/favicon">
+    {{!-- <link rel="stylesheet" href="css/frmCadastar.css"> --}}
+</head>
+
+<body>
+
+    {{!-- <link rel="stylesheet" href="css/frmCadastar.css"> --}}
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: auto;
+            padding: 5px;
+            width: 90%;
+        }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-top: 3px solid black;
+            border-bottom: 3px solid black;
+        }
+
+        .container h1 {
+            text-align: center;
+        }
+
+        input, .select {
+            font-size: 14px;
+            color: rgb(12, 12, 12);
+            font-style: italic;
+            width: 100%;
+            border: 1px solid;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            border-color: #000;
+            background-color: #f2f2f2;
+            border-radius: 4px;
+        }
+
+        input:hover, .select:hover {
+            background-color: #fff;
+        }
+
+        .form-group {
+            padding-top: 15px;
+        }
+
+        .linha1,
+        .linha2,
+        .linha3,
+        .linha4,
+        .linha5,
+        .linha6 {
+            position: relative;
+            display: inline-flex;
+            width: 100%;
+            padding: 0;
+        }
+
+        .linha4 .form-group {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .label,
+        .input {
+            display: inline-block;
+            padding: 0;
+        }
+
+        .label {
+            padding: 0;
+            margin-left: -4px;
+        }
+
+        .input {
+            width: 100%;
+        }
+
+        #mensagem {
+            padding: 0;
+        }
+
+        #cep-1 {
+            padding-right: 0;
+        }
+
+        .mapa {
+            margin: 0;
+            padding: 0;
+            display: inline-flex;
+            width: 70%;
+            height: auto;
+        }
+
+        .mapa a {
+            text-decoration: none;
+            text-align: left;
+            text-align: center;
+            padding: 0;
+        }
+
+        .botao {
+            margin-right: 0;
+        }
+
+        .botao .button {
+            display: inline-block;
+            border-radius: 50px;
+            background-color: #000;
+            border: none;
+            color: #FFF;
+            text-align: center;
+            font-size: 25px;
+            font: bold;
+            padding: 5px;
+            transition: all 0.5s;
+            cursor: pointer;
+            width: 50%;
+            height: auto;
+            float: right;
+        }
+
+        .botao .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .botao .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 4px;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .botao .button:hover span {
+            padding-right: 20px;
+        }
+
+        .botao .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+    </style>
+
+    <div class="container">
+
+        <h1>CADASTRAR NOVO ENDEREÇO</h1><br>
+
+        <form action="/enderecos" method="POST">
+
+            <div class="linha1">
+                <div class="form-group">
+                    <div class="label">
+                        <label for="nome">NOME:</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="form-control" maxlength="50" id="nome" name="nomePessoa" placeholder="Seu nome...">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="email">E-MAIL:</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="form-control" maxlength="50" id="email" name="emailPessoa" placeholder="Ex.: seuemail@dominio.com.br.">
+                    </div>
+                </div>
+            </div><br>
+            
+            <div class="linha2">
+                <div class="form-group">
+                    <div class="label">
+                        <label for="cep" id="cep-1">CEP:</label>
+                        <label for="cep" id="mensagem">...</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="form-control" maxlength="9" id="cep" name="cepPessoa" placeholder="Ex.: 99999-999.">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="ddd">DDD:</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="form-control" maxlength="3" id="ddd" name="dddPessoa" placeholder="Ex.: 99.">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="telefone">TELEFONE:</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="form-control" maxlength="10" id="telefone" name="telefonePessoa" placeholder="Ex.: 99999-9999.">
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="linha3">
+                <div class="form-group">
+                    <div class="label">
+                        <label for="logradouro">ENDEREÇO:</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="form-control" maxlength="50" id="logradouro" name="logradouroPessoa" placeholder="Ex.: Rua, Tv, Av, Vila, etc.">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="numero">NÚMERO:</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="form-control" maxlength="30" id="numero" name="numeroPessoa" placeholder="Ex.: 1234, Casa-A13, Apto 99, etc.">
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="linha4">
+                <div class="form-group">
+                    <iv class="label">
+                        <label for="complemento">COMPLEMENTO:</label>
+                    </iv>
+                    <div class="input">
+                        <input type="text" class="form-control" maxlength="50" id="complemento" name="complementoPessoa" placeholder="Pontos de referências, Perímetro, etc.">
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="linha5">
+                <div class="form-group">
+                    <div class="label">
+                        <label for="bairro">BAIRRO:</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="form-control" maxlength="50" id="bairro" name="bairroPessoa" placeholder="Seu Bairro...">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="localidade">MUNICÍPIO:</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="form-control" maxlength="50" id="localidade" name="localidadePessoa" placeholder="Seu Município...">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="uf">UF:</label>
+                    </div>
+                    <div class="input">
+                        <select class="select" maxlength="2" id="uf" name="ufPessoa" placeholder="Sua UF...">
+                            <option value="">Sua UF...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option> 
+                            <option value="AM">Amazonas</option> 
+                            <option value="AP">Amapá</option> 
+                            <option value="BA">Bahia</option> 
+                            <option value="CE">Ceará</option> 
+                            <option value="DF">Distrito Federal</option> 
+                            <option value="ES">Espírito Santo</option> 
+                            <option value="GO">Goiás</option> 
+                            <option value="MA">Maranhão</option> 
+                            <option value="MT">Mato Grosso</option> 
+                            <option value="MS">Mato Grosso do Sul</option> 
+                            <option value="MG">Minas Gerais</option> 
+                            <option value="PA">Pará</option> 
+                            <option value="PB">Paraíba</option> 
+                            <option value="PR">Paraná</option> 
+                            <option value="PE">Pernambuco</option> 
+                            <option value="PI">Piauí</option> 
+                            <option value="RJ">Rio de Janeiro</option> 
+                            <option value="RN">Rio Grande do Norte</option> 
+                            <option value="RO">Rondônia</option> 
+                            <option value="RS">Rio Grande do Sul</option> 
+                            <option value="RR">Roraima</option> 
+                            <option value="SC">Santa Catarina</option> 
+                            <option value="SE">Sergipe</option> 
+                            <option value="SP">São Paulo</option> 
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                </div>
+            </div><br><br>
+
+            <div class="linha6">
+                <div class="mapa">
+                    <a href="" target="_blank" id="mapa">...</a>
+                </div>
+                <div class="botao">
+                    <button type="submit" class="button" style="vertical-align:middle"><span>CADASTRAR</span></button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script>
+        const cep = document.querySelector("#cep")
+
+        const showData = (result) => {
+            for (const campo in result) {
+                if (document.querySelector("#" + campo)) {
+                    document.querySelector("#" + campo).value = result[campo]
+                }
+            }
+        }
+
+        cep.addEventListener("blur", (e) => {
+
+            let search = cep.value.replace("-", "")
+
+            const options = {
+                method: 'GET',
+                mode: 'cors',
+                cache: 'default'
+            }
+
+            fetch(`https://viacep.com.br/ws/${search}/json/`, options)
+                .then(
+                    response => {
+                        response.json().then(
+                            data => showData(data),
+                            document.getElementById('mensagem').innerHTML = '✔️',
+                            document.getElementById('mapa').innerHTML = '🌎 Visualizar no Google Maps.',
+                            document.getElementById('mapa').href = 'https://www.google.com.br/maps/place/' + search
+                        )
+                    })
+                .catch(
+                    e => console.log('CEP inválido!: ' + e.message + '.'), document.getElementById('mensagem').innerHTML = '❌',
+                    document.getElementById('mapa').innerHTML = '...'
+                )
+        })
+    </script>
+
+</body>
+
+</html>

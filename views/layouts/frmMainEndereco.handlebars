@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCC - IFSC</title>
+    <link rel="shortcut icon" href="https://moodle.ifsc.edu.br/theme/image.php/ifsc2019/theme/1618587925/favicon">
+</head>
+<body>
+
+    <style>
+        .comandos{
+            width: 100%;
+            height: auto;
+            background-color: darkgrey;
+        }
+
+        .botoes{
+            display: flex;
+        }
+
+        .botoes .botao {
+            margin-right: 0;
+        }
+
+        .botoes .botao .button {
+            display: inline-block;
+            border-radius: 50px;
+            background-color: #000;
+            border: none;
+            color: #FFF;
+            text-align: center;
+            font-size: 25px;
+            font: bold;
+            padding: 5px;
+            transition: all 0.5s;
+            cursor: pointer;
+            width: 100%;
+            height: auto;
+            float: right;
+        }
+
+        .botoes .botao .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .botoes .botao .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 4px;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .botoes .botao .button:hover span {
+            padding-right: 20px;
+        }
+
+        .botoes .botao .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+    </style>
+    
+    <div class="container">
+        <h1>SISTEMA DE GERENCIAMENTO DE ENDEREÇOS</h1><br>
+        <h1>(SISGEND)</h1><br>
+    </div>
+
+    <div class="comandos">
+
+        <div class="botoes">
+            <div class="botao">
+                <a href="/consultarEnderecos">
+                    <button type="submit" class="button" style="vertical-align:middle"><span>CONSULTAR</span></button>
+                </a>
+            </div>
+            <div class="botao">
+                <a href="/cadastrarEndereco">
+                    <button type="submit" class="button" style="vertical-align:middle"><span>CADASTRAR</span></button>
+                </a>
+            </div>
+            <div class="botao">
+                <a href="/atualizarEndereco">
+                    <button type="submit" class="button" style="vertical-align:middle"><span>ATUALIZAR</span></button>
+                </a>
+            </div>
+            <div class="botao">
+                <a href="/enderecos">
+                    <button type="submit" class="button" style="vertical-align:middle"><span>EXCLUIR</span></button>
+                </a>
+            </div>
+        </div>
+        <br>
+
+        {{{body}}}
+
+        <br>
+
+    </div>
+    
+</body>
+</html>
